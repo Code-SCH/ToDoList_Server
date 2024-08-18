@@ -17,9 +17,4 @@ public class TodoService {
 
     @Autowired
     public TodoService(TodoRepository todoRepository){this.todoRepository = todoRepository;}
-
-
-
-
-
 }
