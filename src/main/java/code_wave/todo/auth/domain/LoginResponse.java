@@ -11,5 +11,5 @@ public class LoginResponse {
     private Long id;
     private String nickname;
     private String email;
-    //private AuthTokens token;
+    private AuthTokens token;
 }
