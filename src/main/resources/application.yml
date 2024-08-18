@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: todo
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/todolist
+    username: code_SCH
+    password: 12345678
