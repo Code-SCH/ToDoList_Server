@@ -12,3 +12,9 @@ spring:
     url: jdbc:postgresql://localhost:5432/todolist
     username: code_SCH
     password: 12345678
+
+  kakao:
+    key:
+      client_id: b23af313ad89940e19a6df68ec84a94c
+    redirect_uri: https://to-do-list-client-two.vercel.app/kakao/callback/
+
