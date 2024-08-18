@@ -142,6 +142,7 @@ public class KakaoService {
             userRepository.save(kakaouser);
         }
 
+        //AuthTokens token = authTokenGEnerator.generate(uid.toString());
         return new LoginResponse(uid, email,nickname);
     }
 }
