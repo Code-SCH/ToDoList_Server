@@ -145,7 +145,7 @@ public class ShortTermWeatherAPI {
     }
 
     // 현재 위치의 위도와 경도를 가져오는 메서드
-    private double[] getCurrentLocation() throws IOException {
+    public double[] getCurrentLocation() throws IOException {
         String apiUrl = "http://ip-api.com/json";
         URL url = new URL(apiUrl);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -166,7 +166,7 @@ public class ShortTermWeatherAPI {
     }
 
     // Nominatim API를 통해 위치 정보를 가져오는 메서드
-    private JSONObject getLocationData(double latitude, double longitude) throws IOException {
+    public JSONObject getLocationData(double latitude, double longitude) throws IOException {
         String apiUrl = String.format("https://nominatim.openstreetmap.org/reverse?format=json&lat=%f&lon=%f", latitude, longitude);
         URL url = new URL(apiUrl);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
