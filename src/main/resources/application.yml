@@ -1,7 +1,7 @@
-springkakao:
+kakao:
     key:
         client_id: b23af313ad89940e19a6df68ec84a94c
-    redirect_uri: http://localhost:8080/auth/kakao/callback
+    redirect_uri: http://localhost:8080/kakao/callback
 
 spring:
     application:

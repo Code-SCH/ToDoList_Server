@@ -1,4 +1,4 @@
-package code_wave.todo.response;
+package code_wave.todo.oauth.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
