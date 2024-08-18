@@ -10,5 +10,6 @@ spring:
 
   datasource:
     url: jdbc:postgresql://localhost:5432/todolist
-    username: code_SCH
-    password: 12345678
+    username: songheesu
+    password: 10040160
+    driver-class-name: org.postgresql.Driver
