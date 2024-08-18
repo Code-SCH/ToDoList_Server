@@ -1,14 +1,19 @@
+kakao:
+    key:
+        client_id: b23af313ad89940e19a6df68ec84a94c
+    redirect_uri: http://localhost:8080/kakao/callback
+
 spring:
-  application:
-    name: todo
+    application:
+        name: todo
 
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true
-    hibernate:
-      ddl-auto: update
+    jpa:
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        show-sql: true
+        hibernate:
+        ddl-auto: update
 
-  datasource:
-    url: jdbc:postgresql://localhost:5432/todolist
-    username: code_SCH
-    password: 12345678
+    datasource:
+        url: jdbc:postgresql://localhost:5432/todolist
+        username: code_SCH
+        password: 12345678
