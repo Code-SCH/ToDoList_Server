@@ -17,3 +17,7 @@ spring:
     key:
       client_id: b23af313ad89940e19a6df68ec84a94c
     redirect_uri: https://to-do-list-client-two.vercel.app/kakao/callback/
+
+custom:
+  jwt:
+    secretKey: 392FC4B8E169C7471238435EA67E1

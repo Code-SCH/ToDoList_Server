@@ -24,6 +24,6 @@ public class AuthTokensGenerator {
         String accessToken = jwtTokenProvider.accessTokenGenerate(uid, accessTokenExpiration);
         String refreshToken = jwtTokenProvider.refreshTokenGenerate(refreshTokenExpiration);
 
-        return AuthTokens.of(accessToken, refreshToken, BEARER, ACCESS_TOKEN_EXPIRATION_TIME, REFRESH_TOKEN_EXPIRATION_TIME);
+        return AuthTokens.of(accessToken, refreshToken, BEARER, ACCESS_TOKEN_EXPIRATION_TIME / 1000L);
     }
 }
