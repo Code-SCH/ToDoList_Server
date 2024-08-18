@@ -1,6 +1,8 @@
 package code_wave.todo.auth.service;
 
 import code_wave.todo.auth.domain.LoginResponse;
+import code_wave.todo.domain.User;
+import code_wave.todo.repository.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -22,7 +24,7 @@ import java.util.HashMap;
 @RequiredArgsConstructor
 public class KakaoService {
 
-//    private final UserReponsitory userReponsitory;
+    private final UserRepository userRepository;
 //    private final AuthTokenGenerator authTokenGenerator;
 //    private final JwtTokenProvider jwtTokenProvider;
 
@@ -78,8 +80,68 @@ public class KakaoService {
     public LoginResponse kakaoLogin(String code) {
         String accessToken = getAccessToken(code);
 
-        //HashMap<String, Object> userInfo = getKakaoUserInfo(accessToken);
+        HashMap<String, Object> userInfo = getKakaoUserInfo(accessToken);
 
-        //LoginResponse kakaoUserResponse = kakaoUserLogin(userInfo);
+        LoginResponse kakaoUserResponse = kakaoUserLogin(userInfo);
+
+        return kakaoUserResponse;
+    }
+
+    private HashMap<String, Object> getKakaoUserInfo(String accessToken) {
+        HashMap<String, Object> userInfo = new HashMap<>();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer " + accessToken);
+        headers.add("Content-Type", "application/x-www-form-urlencoded");
+
+        HttpEntity<MultiValueMap<String, String>> kakaoUserInfoRequest = new HttpEntity<>(headers);
+
+        RestTemplate rt = new RestTemplate();
+        ResponseEntity<String> response = rt.exchange(
+                "https://kauth.kakao.com/v2/user/me",
+                HttpMethod.POST,
+                kakaoUserInfoRequest,
+                String.class
+        );
+
+        String responseBody = response.getBody();
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = null;
+        try{
+            jsonNode = objectMapper.readTree(responseBody);
+        } catch (JsonMappingException e) {
+            throw new RuntimeException(e);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+        Long id = jsonNode.get("id").asLong();
+        String email = jsonNode.get("kakao_account").get("email").asText();
+        String nickname = jsonNode.get("properties").get("nickname").asText();
+
+        userInfo.put("id", id);
+        userInfo.put("email", email);
+        userInfo.put("nickname", nickname);
+
+        return userInfo;
+    }
+
+    private LoginResponse kakaoUserLogin(HashMap<String, Object> userInfo) {
+
+        Long uid = Long.valueOf(userInfo.get("id").toString());
+        String email = userInfo.get("email").toString();
+        String nickname = userInfo.get("nickname").toString();
+
+        User kakaouser = userRepository.findByEmail(email).orElse(null);
+
+        if(kakaouser == null) {
+            kakaouser = new User();
+            kakaouser.setId(uid);
+            kakaouser.setEmail(email);
+            kakaouser.setNickname(nickname);
+            userRepository.save(kakaouser);
+        }
+
+        return new LoginResponse(uid, email,nickname);
     }
 }
