@@ -21,21 +21,8 @@ public class KakaoUserInfoDto {
     @NoArgsConstructor
     @JsonIgnoreProperties(ignoreUnknown = true)
     public class KakaoAccount {
-
-//        @JsonProperty("profile_needs_agreement")
-//        private boolean isProfileAgree;
-//
-//        @JsonProperty("profile_nickname_needs_agreement")
-//        public boolean isNicknameAgree;
-
         @JsonProperty("profile")
         public Profile profile;
-
-//        @JsonProperty("email_needs_agreement")
-//        public boolean isEmailAgree;
-//
-//        @JsonProperty("is_email_verified")
-//        public boolean isEmailVerified;
 
         @JsonProperty("email")
         public String email;

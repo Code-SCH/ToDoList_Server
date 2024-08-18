@@ -4,6 +4,7 @@ import code_wave.todo.auth.domain.KakaoUserInfoDto;
 import code_wave.todo.auth.service.KakaoService;
 import code_wave.todo.domain.Member;
 import code_wave.todo.repository.MemberRepository;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,10 @@ public class KakaoLoginController {
             memberRepository.save(member);
             return new ResponseEntity<>(HttpStatus.OK);
         }
+    }
+
+    @PostMapping("/test")
+    public ResponseEntity<?> test() {
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
