@@ -10,9 +10,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class KakaoService {
 
-    @Value("${kakao.key.client_id}")
-    private String clientId;
 
-    @Value("${kakao.redirect_uri}")
-    private String redirectUri;
+
+
 }

@@ -1,4 +1,4 @@
-package code_wave.todo.controller;
+package code_wave.todo.oauth.controller;
 
 import code_wave.todo.oauth.domain.LoginResponse;
 import code_wave.todo.oauth.service.KakaoService;
@@ -22,10 +22,11 @@ public class UserController {
     @GetMapping("/kakao/callback")
     public ResponseEntity<LoginResponse> kakaoLogin(@RequestParam String code, HttpServletRequest request){
 
-        try{
-            return ResponseEntity.ok(kakaoService.kakaoLogin(code));
-        }catch(NoSuchElementException e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
-        }
+//        try{
+//            return ResponseEntity.ok(kakaoService.kakaoLogin(code));
+//        }catch(NoSuchElementException e){
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+//        }
+        return null;
     }
 }
