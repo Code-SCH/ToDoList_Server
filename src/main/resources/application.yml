@@ -2,16 +2,25 @@ spring:
   application:
     name: todo
 
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true
-    hibernate:
-      ddl-auto: update
+#  jpa:
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
 
-  datasource:
-    url: jdbc:postgresql://192.168.2.37:5432/todolistdb
-    username: todolist
-    password: todolistpwd
+datasource:
+  url: jdbc:mysql://localhost:3306/codesch?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+
+  # db response name
+  username: root
+
+  # db response password
+  password: jang1109!
+
+#  datasource:
+#    url: jdbc:postgresql://192.168.2.37:5432/todolistdb
+#    username: todolist
+#    password: todolistpwd
 
 kakao:
   key:
@@ -21,7 +30,3 @@ kakao:
 custom:
   jwt:
     secretKey: w7kx6y3X9W9ljC9uZp5x8gHG+2zUVsL5u+1msP4NtHU=
-
-server:
-  address: 0.0.0.0
-  port: 8080
