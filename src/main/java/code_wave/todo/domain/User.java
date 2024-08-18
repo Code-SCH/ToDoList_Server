@@ -3,7 +3,7 @@ package code_wave.todo.domain;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
+@Entity (name ="user")
 @Data
 @Table(name = "app_user")
 public class User {

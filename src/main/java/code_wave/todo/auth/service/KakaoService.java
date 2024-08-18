@@ -1,5 +1,8 @@
 package code_wave.todo.auth.service;
 
+import code_wave.todo.auth.domain.AuthTokens;
+import code_wave.todo.auth.domain.AuthTokensGenerator;
+import code_wave.todo.auth.domain.JwtTokenProvider;
 import code_wave.todo.auth.domain.LoginResponse;
 import code_wave.todo.domain.User;
 import code_wave.todo.repository.UserRepository;
@@ -8,6 +11,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -20,13 +24,14 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class KakaoService {
 
     private final UserRepository userRepository;
-//    private final AuthTokenGenerator authTokenGenerator;
-//    private final JwtTokenProvider jwtTokenProvider;
+    private final AuthTokensGenerator authTokensGenerator;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Value("${kakao.key.client_id}")
     private String clientId;
@@ -122,6 +127,7 @@ public class KakaoService {
         userInfo.put("id", id);
         userInfo.put("email", email);
         userInfo.put("nickname", nickname);
+        ;
 
         return userInfo;
     }
@@ -133,6 +139,7 @@ public class KakaoService {
         String nickname = userInfo.get("nickname").toString();
 
         User kakaouser = userRepository.findByEmail(email).orElse(null);
+        log.info(kakaouser.toString());
 
         if(kakaouser == null) {
             kakaouser = new User();
@@ -142,7 +149,7 @@ public class KakaoService {
             userRepository.save(kakaouser);
         }
 
-        //AuthTokens token = authTokenGEnerator.generate(uid.toString());
-        return new LoginResponse(uid, email,nickname);
+        AuthTokens token = authTokensGenerator.generate(uid.toString());
+        return new LoginResponse(uid, email, nickname, token);
     }
 }

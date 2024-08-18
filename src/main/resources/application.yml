@@ -2,23 +2,31 @@ spring:
   application:
     name: todo
 
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true
-    hibernate:
-      ddl-auto: update
+#  jpa:
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
 
+datasource:
+  url: jdbc:mysql://localhost:3306/codesch?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
 
-  datasource:
-    url: jdbc:postgresql://192.168.2.37:5432/todolistdb
-    username: todolist
-    password: todolistpwd
+  # db response name
+  username: root
 
-  kakao:
-    key:
-      client_id: b23af313ad89940e19a6df68ec84a94c
-    redirect_uri: https://to-do-list-client-two.vercel.app/kakao/callback/
+  # db response password
+  password: jang1109!
+
+#  datasource:
+#    url: jdbc:postgresql://192.168.2.37:5432/todolistdb
+#    username: todolist
+#    password: todolistpwd
+
+kakao:
+  key:
+    client_id: b23af313ad89940e19a6df68ec84a94c
+  redirect_uri: https://to-do-list-client-two.vercel.app/kakao/callback/
 
 custom:
   jwt:
-    secretKey: 392FC4B8E169C7471238435EA67E1
+    secretKey: w7kx6y3X9W9ljC9uZp5x8gHG+2zUVsL5u+1msP4NtHU=
